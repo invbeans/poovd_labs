@@ -8,7 +8,7 @@ namespace poovd_lab1
     {
         //массив байтов, прочитанных из файла
         private byte[] originalBytes;
-        //массив short кодов пикселей с 10 значащами битами
+        //массив ushort кодов пикселей с 10 значащами битами
         public ushort[] originalPixels;
         //получаемые из файла ширина и высота изображения
         public int Width { get; private set; }
