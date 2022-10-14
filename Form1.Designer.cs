@@ -58,6 +58,7 @@
             this.zoomMethod = new System.Windows.Forms.CheckBox();
             this.normalizeBox = new System.Windows.Forms.CheckBox();
             this.overviewContainer = new System.Windows.Forms.PictureBox();
+            this.altText = new System.Windows.Forms.Label();
             this.imageChoiceBox.SuspendLayout();
             this.imageNameBox.SuspendLayout();
             this.codeShiftBox.SuspendLayout();
@@ -377,11 +378,21 @@
             this.overviewContainer.TabIndex = 11;
             this.overviewContainer.TabStop = false;
             // 
+            // altText
+            // 
+            this.altText.AutoSize = true;
+            this.altText.Location = new System.Drawing.Point(761, 119);
+            this.altText.Name = "altText";
+            this.altText.Size = new System.Drawing.Size(357, 25);
+            this.altText.TabIndex = 12;
+            this.altText.Text = "Для увеличения нажмите на изображение";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1187, 758);
+            this.Controls.Add(this.altText);
             this.Controls.Add(this.overviewContainer);
             this.Controls.Add(this.normalizeBox);
             this.Controls.Add(this.zoomMethod);
@@ -451,6 +462,7 @@
         private System.Windows.Forms.CheckBox zoomMethod;
         private System.Windows.Forms.CheckBox normalizeBox;
         private System.Windows.Forms.PictureBox overviewContainer;
+        private System.Windows.Forms.Label altText;
     }
 }
 

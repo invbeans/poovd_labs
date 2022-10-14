@@ -9,9 +9,6 @@ namespace poovd_lab1
 {
     public partial class Form1 : Form
     {
-        //zoomedRect - прямоугольник для хранения фрагмента для увеличения
-        //Point zoomedRect;
-
         //isZoomChosen - флаг, определяющий, выбран ли фрагмент для увеличения - изначально нет
         bool isZoomChosen = false;
 
@@ -160,6 +157,8 @@ namespace poovd_lab1
                 //построение обзорного изображения по изображению в формате Bitmap
                 overviewContainer.Image = image.BuildOverviewImage(0);
                 lineFileName.Text = fileName.Substring(fileName.LastIndexOf(@"\") + 1);
+                //текст с подсказкой становится видимым
+                altText.Visible = true;
             }
         }
 
@@ -355,12 +354,13 @@ namespace poovd_lab1
             //получение фрагмента изображения
             part = GetPartByPoint(GetZoomedArea(e.Location));
             BuildZoomedImage(part);
-            //zoomContainer.Image = CutRect(zoomedRect);
+            //текст с подсказкой становится невидимым
+            altText.Visible = false;
         }
 
         //обработчик нажатия на чекбокс "Интерполировать"
         //при изменении в соответствии с выбранным методом переделывает увеличенный фрагмент
-        //параметр sender - объект, вызвавший событие (поле с изображением imageContainer)
+        //параметр sender - объект, вызвавший событие (чекбокс zoomMethod)
         //параметр e - объект, содержащий данные о событии
         private void ZoomMethod_CheckedChanged(object sender, EventArgs e)
         {
@@ -373,7 +373,7 @@ namespace poovd_lab1
 
         //обработчик нажатия на чекбокс "Нормировать"
         //при изменении перестраивает изображение, либо с нормированием, либо без
-        //параметр sender - объект, вызвавший событие (поле с изображением imageContainer)
+        //параметр sender - объект, вызвавший событие (чекбокс normalizeBox)
         //параметр e - объект, содержащий данные о событии
         private void NormalizeBox_CheckedChanged(object sender, EventArgs e)
         {
@@ -385,7 +385,7 @@ namespace poovd_lab1
 
         //обработчик нажатия на радиокнопку zoom1Button
         //перестраивает изображение с выбранным увеличением - в 3 раза
-        //параметр sender - объект, вызвавший событие (поле с изображением imageContainer)
+        //параметр sender - объект, вызвавший событие (радиокнопка zoom1Button)
         //параметр e - объект, содержащий данные о событии
         private void Zoom1Button_CheckedChanged(object sender, EventArgs e)
         {
@@ -398,7 +398,7 @@ namespace poovd_lab1
 
         //обработчик нажатия на радиокнопку zoom2Button
         //перестраивает изображение с выбранным увеличением - в 5 раз
-        //параметр sender - объект, вызвавший событие (поле с изображением imageContainer)
+        //параметр sender - объект, вызвавший событие (радиокнопка zoom2Button)
         //параметр e - объект, содержащий данные о событии
         private void Zoom2Button_CheckedChanged(object sender, EventArgs e)
         {
@@ -410,7 +410,7 @@ namespace poovd_lab1
 
         //обработчик нажатия на радиокнопку zoom3Button
         //перестраивает изображение с выбранным увеличением - в 7 раз
-        //параметр sender - объект, вызвавший событие (поле с изображением imageContainer)
+        //параметр sender - объект, вызвавший событие (радиокнопка zoom3Button)
         //параметр e - объект, содержащий данные о событии
         private void Zoom3Button_CheckedChanged(object sender, EventArgs e)
         {
