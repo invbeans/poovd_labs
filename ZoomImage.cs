@@ -72,7 +72,7 @@ namespace poovd_lab1
         public ushort[] ZoomBilinear()
         {
             //соотношение изначального размера стороны и увеличенного
-            float side_ratio = ((float)(width1 - 1)) / (width2);
+            float side_ratio = (float)(width1 - 1) / width2;
             //инициализация переменной zoomed с размерами увеличенного фрагмента
             ushort[] zoomed = new ushort[width2 * width2];
             //переменные для хранения координат пиксела, чей цвет будет записываться в массив
