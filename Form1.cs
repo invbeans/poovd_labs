@@ -155,7 +155,7 @@ namespace poovd_lab1
                 //удаление предыдущего увеличенного фрагмента, если он был выбран
                 zoomContainer.Image = null;
                 //построение обзорного изображения по изображению в формате Bitmap
-                overviewContainer.Image = image.BuildOverviewImage(0);
+                overviewContainer.Image = image.BuildOverviewImage(shift);
                 lineFileName.Text = fileName.Substring(fileName.LastIndexOf(@"\") + 1);
                 //текст с подсказкой становится видимым
                 altText.Visible = true;
