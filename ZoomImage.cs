@@ -13,8 +13,6 @@ namespace poovd_lab1
         int minBright;
         //part - переменная для хранения фрагмента изображения в масштабе 1:1
         ushort[] part;
-        //zoomed - переменная для хранения увеличенного фрагмента изображения
-        ushort[] zoomed;
         //width1 - изначальный размер стороны фрагмента
         int width1;
         //width2 - размер стороны фрагмента после увеличения
@@ -44,10 +42,11 @@ namespace poovd_lab1
 
         //метод для масштабирования фрагмента изображения методом ближайшего соседа
         //записывает цвета пикселей в переменную класса zoomed - увеличенный фрагмент
-        public void ZoomNeighbour()
+        //возвращает одномерный массив кодов пикселей увеличенного изображения типа ushort[]
+        public ushort[] ZoomNeighbour()
         {
             //инициализация переменной zoomed с размерами увеличенного фрагмента
-            zoomed = new ushort[(int)Math.Pow(width2, 2)];
+            ushort[] zoomed = new ushort[width2 * width2];
             //соотношение изначального размера стороны и увеличенного
             double side_ratio = width1 / (double)width2;
             //переменные для хранения координат пиксела, чей цвет будет записываться в массив
@@ -64,16 +63,18 @@ namespace poovd_lab1
                     index++;
                 }
             }
+            return zoomed;
         }
 
         //метод для масштабирования фрагмента изображения методом билинейной интерполяции
         //записывает цвета пикселей в переменную класса zoomed - увеличенный фрагмент
-        public void ZoomBilinear()
+        //возвращает одномерный массив кодов пикселей увеличенного изображения типа ushort[]
+        public ushort[] ZoomBilinear()
         {
             //соотношение изначального размера стороны и увеличенного
             float side_ratio = ((float)(width1 - 1)) / (width2);
             //инициализация переменной zoomed с размерами увеличенного фрагмента
-            zoomed = new ushort[(int)Math.Pow(width2, 2)];
+            ushort[] zoomed = new ushort[width2 * width2];
             //переменные для хранения координат пиксела, чей цвет будет записываться в массив
             int x, y;
             //переменные для хранения цветов 4 пикселов, окружающих искомый и образующих квадрат
@@ -110,12 +111,13 @@ namespace poovd_lab1
                     count++;
                 }
             }
+            return zoomed;
         }
 
         //метод для нормирования яркостей пикселов изображения
         //возвращает полученное изображение в формате Bitmap
-        //параметры - увеличенный фрагмент формата Bitmap, его ширина и высота
-        private Bitmap BuildBitmap(bool isNormalized)
+        //параметры: isNormalized - флаг, будут ли нормализованы яркости, zoomed - массив с увеличенным фрагментом
+        private Bitmap BuildBitmap(bool isNormalized, ushort[] zoomed)
         {
             int index = 0;
             //bitmap - переменная для нового изображения после нормирования
@@ -147,9 +149,10 @@ namespace poovd_lab1
         //метод билинейной интерполяции. Возвращает изображение в формате Bitmap
         public Bitmap GetBitmap(bool isNormalized, bool bilinear)
         {
-            if (bilinear) ZoomBilinear();
-            else ZoomNeighbour();
-            return BuildBitmap(isNormalized);
+            ushort[] zoomed = new ushort[width2 * width2];
+            if (bilinear) zoomed = ZoomBilinear();
+            else zoomed = ZoomNeighbour();
+            return BuildBitmap(isNormalized, zoomed);
         }
     }
         

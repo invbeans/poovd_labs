@@ -94,7 +94,7 @@ namespace poovd_lab1
 
         //метод получения текущего выбранного масштаба увеличения
         //возвращает число - во сколько раз будет увеличено изображение
-        private int GetCurrentZoom()
+        private int GetZoomValue()
         {
             //по умолчанию зум равен 3
             int zoom = 3;
@@ -112,7 +112,7 @@ namespace poovd_lab1
 
         //метод получения текущего способа увеличения
         //возвращает булеву переменную - будет ли производиться интерполяция изображения, или нет
-        private bool GetCurrentZoomMethod()
+        private bool GetZoomMethod()
         {
             //если чекбокс выбран, то будет использоваться метод билинейной интерполяции
             if (zoomMethod.Checked) return true;
@@ -315,9 +315,9 @@ namespace poovd_lab1
         private void BuildZoomedImage(ushort[] part)
         {
             //переменная, получающая текущий зум, выбранный пользователем
-            int zoom = GetCurrentZoom();
+            int zoom = GetZoomValue();
             //флаг, показывающий, будет ли использоваться билинейная интерполяция
-            bool bilinear = GetCurrentZoomMethod();
+            bool bilinear = GetZoomMethod();
             //флаг, показывающий, будет ли изображение нормировано
             bool isNormalized = IsNormalized();
             int shift = GetCurrentShift();
