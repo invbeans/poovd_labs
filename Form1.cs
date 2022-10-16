@@ -358,13 +358,16 @@ namespace poovd_lab1
         //параметр e - объект, содержащий данные о событии
         private void ImageContainer_Click(object sender, MouseEventArgs e)
         {
-            //флаг, определяющий, выбран ли фрагмент для масштабирования
-            isZoomChosen = true;
-            //получение фрагмента изображения
-            part = GetPartByPoint(GetZoomedArea(e.Location));
-            BuildZoomedImage(part);
-            //текст с подсказкой становится невидимым
-            altText.Visible = false;
+            if(image != null)
+            {
+                //флаг, определяющий, выбран ли фрагмент для масштабирования
+                isZoomChosen = true;
+                //получение фрагмента изображения
+                part = GetPartByPoint(GetZoomedArea(e.Location));
+                BuildZoomedImage(part);
+                //текст с подсказкой становится невидимым
+                altText.Visible = false;
+            }
         }
 
         //обработчик нажатия на чекбокс "Интерполировать"
