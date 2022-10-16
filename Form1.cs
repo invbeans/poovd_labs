@@ -264,6 +264,9 @@ namespace poovd_lab1
                     //сохраняем выбранный верхний ряд в переменной
                     highestRow = highestY;
                     imageContainer.Image = img;
+                    //если высота отображаемого изображения меньше 60, фрагмент для увеличения тоже уменьшается
+                    width = (image.Height - highestRow < 60) ? image.Height - highestRow : 60;
+                    height = width;
                 }
             }
             else if(highestRowInput.Text != "")
