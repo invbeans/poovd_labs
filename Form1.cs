@@ -323,6 +323,12 @@ namespace poovd_lab1
             bool bilinear = GetZoomMethod();
             //флаг, показывающий, будет ли изображение нормировано
             bool isNormalized = IsNormalized();
+            //если увеличиваемый фрагмент слишком мал, билинейная интерполяция и нормирование не используются
+            if (part.Length <= 1)
+            {
+                bilinear = false;
+                isNormalized = false;
+            }
             int shift = GetCurrentShift();
             zoomImage = new ZoomImage(part, width, zoom, shift);
             //построение изображения с помощью объекта класса ZoomImage и вывод на форму
